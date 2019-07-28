@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOトップ</title>
+</head>
+<body>
+<class header1>
+    <p>TODOトップ</p>
+</class>
+<class menu>
+    <class taskAdd>
+        <p>・タスク追加</p>
+        <input type="submit" id="taskAdd" onclick="taskAddGo" value="追加">
+    </class>
+    <class taskList>
+        <form action="/todoadd">
+            <p>・タスク一覧</p>
+            <input type="submit" onclick="location.href='./todoList.html'" value="一覧">
+        </form>
+    </class>
+</class>
+
+<script type="text/javascript">
+    function taskAddGo () {
+    window.open('./todoList.html','_blank');
+    }
+
+    /*<CDATA[*/
+    function readScript () {
+    $("next").on('click'.function() {
+    submitRequest("next");
+    return;
+    });
+
+    /*]]>*/
+</script>
+</body>
+</html>
