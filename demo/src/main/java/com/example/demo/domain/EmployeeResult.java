@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import lombok.Data;
+
 @Data
 public class EmployeeResult {
     private int employeeId; //従業員ID
