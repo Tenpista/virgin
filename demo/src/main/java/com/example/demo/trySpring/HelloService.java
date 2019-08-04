@@ -1,7 +1,5 @@
-package com.example.demo.service;
+package com.example.demo.trySpring;
 
-import com.example.demo.domain.EmployeeResult;
-import com.example.demo.repository.HelloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

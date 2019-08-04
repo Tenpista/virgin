@@ -1,7 +1,5 @@
 package com.example.demo.trySpring;
 
-import com.example.demo.domain.EmployeeResult;
-import com.example.demo.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +14,19 @@ public class HelloController {
     private HelloService helloService;
 
     @GetMapping("/hello")
-    public String getHello () {
+    public String getHello() {
         return "hello";
     }
 
     @PostMapping("/hello")
-    public String postRequest(@RequestParam("text1")String str, Model model){
-        model.addAttribute("sample",str);
+    public String postRequest(@RequestParam("text1") String str, Model model) {
+        model.addAttribute("sample", str);
 
         return "helloResponse";
     }
+
     @PostMapping("/hello/db")
-    public String postDbRequest(@RequestParam("text2")String str,Model model){
+    public String postDbRequest(@RequestParam("text2") String str, Model model) {
         //String からint型に変換
         int id = Integer.parseInt(str);
 
