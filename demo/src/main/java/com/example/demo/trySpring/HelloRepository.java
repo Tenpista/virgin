@@ -12,12 +12,11 @@ public class HelloRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public Map<String, Object> findOne(int id) {
         String query = "SELECT"
                 + " employee_id,"
                 + " employee_name,"
-                + " age"
+                + " age "
                 + "FROM employee "
                 + "WHERE employee_id=?";
 

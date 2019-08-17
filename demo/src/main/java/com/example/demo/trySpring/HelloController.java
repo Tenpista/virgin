@@ -37,6 +37,6 @@ public class HelloController {
         model.addAttribute("name", employeeResult.getEmployeeName());
         model.addAttribute("age", employeeResult.getAge());
         //helloResponseDB.htmlに画面遷移
-        return "helloReseponseDB";
+        return "helloResponseDb";
     }
 }

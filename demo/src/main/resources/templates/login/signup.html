@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <title>SignUp</title>
+</head>
+<body>
+    <div class="col-sm-5">
+        <div class="page-header">
+            <h1>ユーザー登録画面</h1>
+        </div>
+    </div>
+    <form method="post" th:action="@{/signup}" th:object="${signupForm}">
+        <table class="table table-bordered table-hover">
+            <!-- ユーザーIDの入力エリア -->
+            <tr>
+                <th class="active col-sm-3">ユーザーID</th>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{userId}"/>
+                    </div>
+                </td>
+            </tr>
+            <!-- パスワードの入力エリア -->
+            <tr>
+                <th class="active">パスワード</th>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{password}"/>
+                    </div>
+                </td>
+            </tr>
+            <!-- ユーザー名の入力エリア -->
+            <tr>
+                <th class="active">ユーザー名</th>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{userName}"/>
+                    </div>
+                </td>
+            </tr>
+            <!-- 誕生日の入力エリア -->
+            <tr>
+                <th class="active">誕生日</th>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="yyyy/MM/dd" th:field="*{birthday}"/>
+                    </div>
+                </td>
+            </tr>
+            <!-- 年齢の入力エリア -->
+            <tr>
+                <th class="active">年齢</th>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" th:field="*{age}"/>
+                        </div>
+                    </td>
+            </tr>
+            <!-- 結婚ステータスの入力エリア -->
+            <tr>
+                <th class="active">結婚</th>
+                <td>
+                    <div class="form-group">
+                        <!-- ポイント :ラジオボタンの実装-->
+                        <div th:each="item : ${radioMarriage}">
+                            <input type="radio" name="radioMarrige" th:text="${item.key}" th:value="${item.value}" th:field="*{marriage}"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- ポイント２ :エラーメッセージの一覧表示 -->
+        <ul>
+            <li th:each="error : ${#fields.detailedErrors()}">
+                <span th:text="${error.message}">Error message</span>
+            </li>
+        </ul>
+        <!-- ユーザー登録ボタン -->
+        <button class="btn btn-primary" type="submit">ユーザー登録</button>
+    </form>
+</body>
+</html>
