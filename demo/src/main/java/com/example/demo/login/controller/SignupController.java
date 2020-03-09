@@ -1,6 +1,10 @@
 package com.example.demo.login.controller;
 
+import com.example.demo.login.domain.model.GroupOrder;
 import com.example.demo.login.domain.model.SignupForm;
+import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +18,9 @@ import java.util.Map;
 
 @Controller
 public class SignupController {
+
+    @Autowired
+    private UserService userService;
 
     //ポイント１ :ラジオボタンの実装
     private Map<String, String> radioMarriage;
@@ -46,7 +53,7 @@ public class SignupController {
 
     //ユーザー登録画面のPOST用コントローラー
     @PostMapping("/signup")
-    public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult,
+    public String postSignUp(@ModelAttribute @Validated(GroupOrder.class) SignupForm form, BindingResult bindingResult,
                              Model model){
 
         // ポイント３ : データバインド失敗の場合
@@ -59,6 +66,26 @@ public class SignupController {
 
         // formの中身をコンソールに出して確認します
         System.out.println(form);
+
+        User user = new User();
+
+        user.setUserId(form.getUserId()); // ユーザーID
+        user.setPassword(form.getPassword()); // パスワード
+        user.setUserName(form.getUserName()); // ユーザー名
+        user.setBirthday(form.getBirthday()); // 誕生日
+        user.setAge(form.getAge()); // 年齢
+        user.setMarriage(form.isMarriage()); // 結婚ステータス
+        user.setRole("ROLE_GENERAL"); // ロール（一般）
+
+        // ユーザー登録処理
+        boolean result = userService.insert(user);
+
+        // ユーザー登録結果の判定
+        if(result = true){
+            System.out.println("insert成功");
+        } else {
+            System.out.println("insert失敗");
+        }
 
         //ポイント２ :リダイレクト
         //login.htmlにリダイレクト
